@@ -10,8 +10,8 @@
 (def footer
   (slurp "resources/footer.html"))
 
-(defn page [title snippet]
+(defn page [snippet]
   (spit "index.html"
-    (str (header title)
+    (str (header "Instant notebook")
        (klipse snippet)
        footer)))
