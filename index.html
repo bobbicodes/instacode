@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title> yo </title>
+<title> work </title>
 <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css">
 <script>
     window.klipse_settings = {
@@ -12,10 +12,72 @@
 </script>
 </head>
 <body>
-<h1><center> yo </center></h1>
+<h1><center> work </center></h1>
 <h2>
 <pre><code class="language-klipse">
-content
+(defn round [d]
+  (/ (Math/round (* d 1000)) 1000))
+
+(defn close-enough? [x y]
+  (= (round (double x)) (round (double y))))
+
+(defn prime-factors
+  ([n] (prime-factors 2 n))
+  ([f n]
+   (if (&gt; n 1)
+     (if (zero? (mod n f))
+       (cons f (prime-factors f (/ n f)))
+       (recur (inc f) n)))))
+
+(defn perfect-squares [s]
+  (loop [items (sort s) pairs []]
+    (if (empty? items) pairs
+      (if (= (first items) (second items))
+        (recur (drop 2 items) (conj pairs (first items)))
+        (recur (rest items) pairs)))))
+
+(defn simplify-sqrt [sqrt]
+  (let [sq (reduce * (perfect-squares (prime-factors sqrt)))]
+    [sq (/ sqrt (* sq sq))]))
+
+(defn exp [x n]
+  (Math/pow x n))
+
+(defn calc-delta [A x n]
+  (/ (- (/ A (Math/pow x (- n 1))) x) n))
+
+(defn nth-root
+  ([A n] (nth-root A n 0.5 1.0))
+  ([A n guess-prev guess-current]
+   (if (&lt; (Math/abs (- guess-prev guess-current)) 1e-6)
+     guess-current
+     (recur A n guess-current (+ guess-current (calc-delta A guess-current n))))))
+
+(first 
+ (filter #(close-enough?
+           (- (* -4 %) 8)
+           24)
+         (range -100 100 0.05)))
+
+(def ratmap
+  (zipmap
+   (for [numer (range 1 101)
+         denom (range 1 101)]
+     (round (/ numer denom)))
+   (for [numer (range 1 101)
+         denom (range 1 101)]
+     [numer denom])))
+
+(ratmap 0.99)
+
+(defn rat [decimal]
+  (ratmap (round decimal)))
+
+(rat 0.727)
+
+(let [b 2]
+  [(rat (/ (- (nth-root b 2) (exp (* 2 b) -3))
+           (exp (* 4 b) 2))) (* ])
 </code></pre>
 </h2>
 <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>

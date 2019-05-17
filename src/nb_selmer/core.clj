@@ -11,6 +11,7 @@
   (slurp "resources/footer.html"))
 
 (defn page [title snippet]
-  (str (header title)
+  (spit "index.html"
+    (str (header title)
        (klipse snippet)
-       footer))
+       footer)))
