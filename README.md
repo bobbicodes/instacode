@@ -4,7 +4,7 @@ This library is designed to make your life really easy, so this needs to be supe
 
 1. Clone this repo
 2. Start a repl
-3. Type `(page "title" "code")`.
+3. Type `(page "code")`.
 
 Open `index.html` and your code will be live!
  
