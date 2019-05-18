@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> Test Page </title>
+<link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css">
+<script>
+    window.klipse_settings = {
+        selector: '.language-klipse',
+        selector_reagent: '.language-reagent',
+    };
+</script>
+</head>
+<body>
+<h1><center> Test Page </center></h1>
+<pre><code class="language-klipse">
+(defn round [d]
+  (/ (Math/round (* d 1000)) 1000))
+
+(defn gcd [a b]
+  (if (zero? b)
+    a
+    (recur b (mod a b))))
+
+(defn exp [x n] (Math/pow x n))
+
+(defn rad
+  ([A n] (rad A n 0.5 1.0))
+  ([A n guess-prev guess-current]
+   (if (&lt; (Math/abs (- guess-prev guess-current)) 1e-6)
+     guess-current
+     (recur A n guess-current
+            (+ guess-current
+               ((fn [A x n]
+                  (/ (- (/ A (Math/pow x (- n 1))) x) n))
+                A guess-current n))))))
+
+(def ratmap
+  (zipmap
+   (for [numer (range 1 101)
+         denom (range 1 101)]
+     (round (/ numer denom)))
+   (for [numer (range 1 101)
+         denom (range 1 101)]
+     [numer denom])))
+
+(defn rat [decimal]
+  (let [divisor (apply gcd (ratmap (round decimal)))]
+    [(/ (first (ratmap (round decimal))) divisor)
+     (/ (last (ratmap (round decimal))) divisor)]))
+
+(filter #(apply (fn [x y]
+                  (and (= x 2)
+                       (= y 3))) %)
+        (for [x (range -100 100)
+              y (range -100 100)]
+          [x y]))
+
+(let [c 2]
+  [(rat (exp (rad c 7) 5)) (rat (exp c 3))])
+
+(let [x 10/4]
+  (/ (- 7 (* 3 x))
+     (- (* 4 x) 9)))
+
+(defn price [distance]
+  (let [slope (/ (- 207 186)
+                 (- 145 110))]
+    (+ (* distance slope) 120)))
+
+(price 110)
+
+(let [x 3 y 3]
+  [y
+   (- (* 4 x) 9)])
+
+(let [a 1]
+  [(exp (* (exp a -2) (exp 8 7)) 2)
+   (* (exp a -4)
+      (exp 8 14))])
+</code></pre>
+<script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
+</body>
+</html>

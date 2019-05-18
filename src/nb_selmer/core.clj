@@ -10,8 +10,18 @@
 (def footer
   (slurp "resources/footer.html"))
 
-(defn page [snippet]
-  (spit "index.html"
-    (str (header "Instant notebook")
-       (klipse snippet)
-       footer)))
+(defn filename [s]
+  (clojure.string/lower-case
+   (clojure.string/replace s " " "-")))
+
+(defn nb
+  ([code]
+   (spit "index.html"
+         (str (header "Instant notebook")
+              (klipse code)
+              footer)))
+  ([title code]
+   (spit (str (filename title) ".html")
+         (str (header title)
+              (klipse code)
+              footer))))
