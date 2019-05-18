@@ -3,7 +3,7 @@
 This library is designed to make your life really easy, so this needs to be super-clear or it will be self-defeating.
 
 1. Clone this repo
-2. Start a repl f
+2. Start a repl from its directory
 3. Type `(nb "title" "code")`.
 
 That's right, just paste your entire code (inside quotes) right into the repl. If you leave out the title it will default to `index.html`.
