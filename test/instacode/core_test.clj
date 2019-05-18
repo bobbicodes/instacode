@@ -1,6 +1,6 @@
-(ns nb-selmer.core-test
+(ns instacode.core-test
   (:require [clojure.test :refer :all]
-            [nb-selmer.core :refer :all]))
+            [instacode.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

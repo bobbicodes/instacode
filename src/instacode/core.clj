@@ -1,4 +1,4 @@
-(ns nb-selmer.core
+(ns instacode.core
   (:require [selmer.parser :as tmpl]))
 
 (defn header [title]
