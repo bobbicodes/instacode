@@ -1,5 +1,8 @@
 (ns instacode.core
-  (:require [selmer.parser :as tmpl]))
+  (:require [clojure.java.io :as io]
+            [ring.adapter.jetty :as jetty]
+            [ring.util.response :as ring]
+            [selmer.parser :as tmpl]))
 
 (defn header [title]
   (tmpl/render-file "header.html" {:title title}))
@@ -25,3 +28,7 @@
          (str (header title)
               (klipse code)
               footer))))
+
+(defn handler [request]
+  (-> (ring/response (io/file "index.html"))
+      (ring/content-type "text/html")))
