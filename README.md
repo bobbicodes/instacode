@@ -1,4 +1,8 @@
-## From the REPL
+# Instacode
+
+Clojure notebook generator with [KaTeX](https://github.com/KaTeX/KaTeX) and [KLIPSE](https://github.com/viebel/klipse)
+
+## Generate static content from the REPL
 
 The `nb` function takes 2 strings, a text block which may include KaTeX formulas (inline or display style), and an interactive code block. Slashes (`\`), quotes (`"`), etc. must be escaped when used from the REPL. 
 
@@ -34,7 +38,7 @@ instacode.core=> (nb "$$\\huge{\\pink{x}=\\dfrac{-\\blue{b}\\pm\\sqrt{\\blue{b}\
 ```
 ![Screenshot](Screenshot.png)
 
-## Web server
+## Start a web server
 
 ```
 ~/instacode$ lein run
