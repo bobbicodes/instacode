@@ -7,8 +7,11 @@
 (defn header [title]
   (tmpl/render-file "header.html" {:title title}))
 
-(defn klipse [snippet]
-  (tmpl/render-file "klipse.html" {:snippet snippet}))
+(defn block
+  ([text]
+   (tmpl/render-file "block.html" {:text text}))
+  ([text code]
+   (tmpl/render-file "block.html" {:text text :code code})))
 
 (def footer
   (slurp "resources/footer.html"))
@@ -18,15 +21,15 @@
    (clojure.string/replace s " " "-")))
 
 (defn nb
-  ([code]
+  ([text]
    (spit "index.html"
          (str (header "Instant notebook")
-              (klipse code)
+              (block text)
               footer)))
-  ([title code]
-   (spit (str (filename title) ".html")
-         (str (header title)
-              (klipse code)
+  ([text code]
+   (spit "index.html"
+         (str (header "Instant notebook")
+              (block text code)
               footer))))
 
 (defn handler [request]
