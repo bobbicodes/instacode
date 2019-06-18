@@ -1,4 +1,4 @@
-# Example usage
+## From the REPL
 
 The `nb` function takes 2 strings, a text block which may include KaTeX formulas (inline or display style), and an interactive code block. Slashes (`\`), quotes (`"`), etc. must be escaped when used from the REPL. 
 
@@ -33,3 +33,11 @@ instacode.core=> (nb "$$\\huge{\\pink{x}=\\dfrac{-\\blue{b}\\pm\\sqrt{\\blue{b}\
 (quadratic-rational [3 24 48])")
 ```
 ![Screenshot](Screenshot.png)
+
+## Web server
+
+```
+~/instacode$ lein run
+```
+
+![Ring app](ring.png)

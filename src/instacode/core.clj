@@ -32,14 +32,12 @@
 
 (defn page [text code]
   (str (header "Instant notebook")
-       (if text
-         (block text code)
-         (str "<form>"
-              "Text: <input name='text' type='text'>"
-              "Code: <input name='code' type='text'>"
-              "<input type='submit'>"
-              "</form>"))
-              footer))
+       (block text code)
+       "<form>Text: <input name='text' type='text'>
+        Code: <input name='code' type='text'>
+        <input type='submit'>
+        </form>"
+        footer))
 
 (defn handler [{{text "text" code "code"} :params}]
   (-> (ring/response (page text code))
