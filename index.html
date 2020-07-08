@@ -56,7 +56,7 @@
   (defn prime-factors
   ([n] (prime-factors 2 n))
   ([f n]
-   (if (&gt; n 1)
+   (if (&amp;gt; n 1)
      (if (zero? (mod n f))
        (cons f (prime-factors f (/ n f)))
        (recur (inc f) n)))))
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            <footer>Copyright © 2019 Bobby Towers<p style="text-align: center;"></p></footer>
+            <footer>Copyright © 2020 Bobby Towers<p style="text-align: center;"></p></footer>
         </div>
         <script src="js/jquery-1.js"></script>
         <script src="js/bootstrap.js"></script>
