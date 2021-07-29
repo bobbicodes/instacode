@@ -13,7 +13,7 @@ The page [here](https://porkostomus.github.io/instacode/) was generated from the
 instacode.core=> (nb "$$\\huge{\\pink{x}=\\dfrac{-\\blue{b}\\pm\\sqrt{\\blue{b}\\purple{^2}-4\\red{a}\\orange{c}}}{2\\red{a}}}$$" "(defn prime-factors
   ([n] (prime-factors 2 n))
   ([f n]
-   (if (&gt; n 1)
+   (if (= n 1)
      (if (zero? (mod n f))
        (cons f (prime-factors f (/ n f)))
        (recur (inc f) n)))))
